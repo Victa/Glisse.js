@@ -3,7 +3,7 @@
 Glisse.js is a simple, responsive and fully customizable jQuery photo viewer.
 You'll like the transitions between two photos entirely assumed by CSS3.
 
-To see the plugin in action here is two example with some lovely photos of my friend [Pierre Nizet](http://www.pierre-nizet.fr/).
+To see the plugin in action here is two examples with some lovely photos of my friend [Pierre Nizet](http://www.pierre-nizet.fr/).
 
 Feel free to fork the project on github or ping me on [twitter](http://twitter.com/_victa) for any comments.
 
