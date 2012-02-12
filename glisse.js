@@ -431,18 +431,18 @@
         };
 
         var setTitle = function setTitle() {
-            var $legend     = $('#glisse-controls').find('.glisse-legend');
+            var $legend     = plugin.els['controls'].find('.glisse-legend');
             var $currentEl = $('img[data-glisse-big="'+pictureUrl+'"]');
             var title      = $currentEl.attr('title');
-            (title) ? $legend.html(title) : $legend.html('');
+             $legend.html( (title) ? title : '');
         };
 
         // Spinner =========================================
         var spinner = function spinner(action) {
             if(action){
-                $('#glisse-overlay').addClass('loading');
+                plugin.els['overlay'].addClass('loading');
             } else {
-                $('#glisse-overlay').removeClass('loading');
+                plugin.els['overlay'].removeClass('loading');
             }
         };
 
@@ -481,9 +481,7 @@
                 // If there's only one finger touching
                 if (e.touches.length == 1) {
                     // Remove transition
-                    var cssProp = getPrefix('transition')+'transition',
-                        cssVal = 'opacity '+plugin.settings.speed+'ms ease';
-                    plugin.els['content'].css(cssProp, cssVal);
+                    plugin.els['content'].css(getPrefix('transition')+'transition', '');
 
                     var touch = e.touches[0];
                     // If they user tries clicking on a link
