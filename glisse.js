@@ -68,7 +68,7 @@
                     document.ontouchend = function(e){ touchHandler(e); };
 
                     if(!isSupportFixed()){
-                        window.scrollTo(0,0);
+                        //window.scrollTo(0,0);
                     }
                 }
             });
