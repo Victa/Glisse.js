@@ -25,7 +25,7 @@
         };
 
         // Private var
-        var pictureUrl, group, isChange = false, touch = {};
+        var pictureUrl, group, isChange = false, touch = {}, cache = [];
 
         plugin.init = function() {
             plugin.settings = $.extend({}, defaults, options);
@@ -41,6 +41,7 @@
 
             // Set events
             $element.on('click', function() {
+                preloadImgs();
                 createElements();
                 setChangeStyle();
                 addImage(pictureUrl);
@@ -74,6 +75,19 @@
             });
         };
 
+        var preloadImgs = function preloadImgs(){
+            var current, image_urls = [], i, self = this;
+            $('img[rel="'+group+'"]').each(function(i,el){
+                image_urls.push($(this).attr(plugin.settings.dataName));
+            });
+            function loaded(current){
+                cache.push(current);
+            }
+            for (i = 0; i < image_urls.length; i += 1) {
+                current = jQuery("<img>").attr("src", image_urls[i]);
+                current.load(loaded(image_urls[i]));
+            }
+        };
         
         var createElements = function createElements() {
             $element.addClass('active');
@@ -83,7 +97,7 @@
 
             // Create Glisse HTML structure
             plugin.els['overlay']       = $(document.createElement('div')).attr('id','glisse-overlay').css(cssProp, cssVal);
-            plugin.els['spinner']       = $(document.createElement('div')).attr('id','glisse-spinner');
+            plugin.els['spinner']       = $(document.createElement('div')).attr('id','glisse-spinner').css(cssProp, cssVal);
             plugin.els['close']         = $(document.createElement('span')).attr('id','glisse-close').css(cssProp, cssVal);
             plugin.els['content']       = $(document.createElement('div')).attr('id','glisse-overlay-content').css(cssProp, cssVal)
                                             .css(getPrefix('transform')+'transform', 'scale(0)');
@@ -150,7 +164,7 @@
 
         var addImage = function addImage(pic) {
             spinner(true);
-            var url = pic+'?'+Math.random(),
+            var url = pic,
                 img = $('<img/>',{src: url}).appendTo(plugin.els['content']);
             plugin.els['content'].css({ backgroundImage: 'url('+url+')'});
             
@@ -187,10 +201,15 @@
                         cssVal = 'opacity '+plugin.settings.speed+'ms ease, '+getPrefix('transform')+'transform '+plugin.settings.speed+'ms ease';
                     plugin.els['content'].css(cssProp, '');
                 }
-                spinner(true);
+                
+                pictureUrl = $next.attr(plugin.settings.dataName);
+
+                if(cache.indexOf(pictureUrl) === -1)
+                    spinner(true);
+
                 $currentEl.removeClass('active');
                 $next.addClass('active');
-                pictureUrl = $next.attr(plugin.settings.dataName);
+                
                 setChangeStatus();
                 setTitle();
 
@@ -200,13 +219,16 @@
                             .css('display','none');
                     }
 
-                    var url = pictureUrl+'?'+Math.random(),
+                    var url = pictureUrl,
                         img = $('<img/>',{src: url}).appendTo(plugin.els['content']);
                     plugin.els['content'].css({ backgroundImage: 'url('+url+')'});
                     
                     img.load(function() {
                         img.remove();
-                        spinner(false);
+                        
+                        if(cache.indexOf(pictureUrl) === -1)
+                            spinner(false);
+
                         if(plugin.settings.mobile){
                             plugin.els['content'].css('display','block');
                         }
