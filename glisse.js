@@ -41,12 +41,12 @@
 
             // Set events
             $element.on('click', function() {
-                preloadImgs();
                 createElements();
                 setChangeStyle();
                 addImage(pictureUrl);
                 setChangeStatus();
                 setTitle();
+                preloadImgs();
 
                 // Bind Keyboard events
                 $(document).keydown(function(event) {
@@ -97,7 +97,7 @@
 
             // Create Glisse HTML structure
             plugin.els['overlay']       = $(document.createElement('div')).attr('id','glisse-overlay').css(cssProp, cssVal);
-            plugin.els['spinner']       = $(document.createElement('div')).attr('id','glisse-spinner').css(cssProp, cssVal);
+            plugin.els['spinner']       = $(document.createElement('div')).attr('id','glisse-spinner');
             plugin.els['close']         = $(document.createElement('span')).attr('id','glisse-close').css(cssProp, cssVal);
             plugin.els['content']       = $(document.createElement('div')).attr('id','glisse-overlay-content').css(cssProp, cssVal)
                                             .css(getPrefix('transform')+'transform', 'scale(0)');
