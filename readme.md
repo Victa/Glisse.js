@@ -22,8 +22,12 @@ Feel free to fork the project on github or ping me on [twitter](http://twitter.c
 * iPad & iPhone ready _(soon a fully Android support)_
 
 #### Warning
-This plugin uses a lot of new CSS3 features. It's definitely not a good idea to uses this plugin on a general public website for the time.
-But now my goal is to make a fully compliant plugin, using javascript on old browsers. So stay tuned.
+This plugin uses a lot of new CSS3 features like keyframes. It’s definitely not a good idea to uses it on a general public website for the time. But my goal -if the plugin has good returns- is to make a fully compliant plugin, using javascript animation on old browsers. So stay tuned.
+
+#### Roadmap
+
+* Fallbacks for old browsers
+* Add a paging
 
 ## Documentation
 
@@ -89,6 +93,7 @@ Valid options for glisse.js are:
 * Chrome 14+
 * Safari 5+
 * iPhone/iPad iOS 4.3+
+* BlackBerry OS v6+
 
 Works but without CSS3 trantions:
 
