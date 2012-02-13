@@ -27,8 +27,7 @@ This plugin uses a lot of new CSS3 features like keyframes. It’s definitely no
 #### Roadmap
 
 * Fallbacks for old browsers
-* Add a pagination
-
+* Add a paging
 
 ## Documentation
 
