@@ -88,6 +88,7 @@ Valid options for glisse.js are:
 * Chrome 14+
 * Safari 5+
 * iPhone/iPad iOS 4.3+
+* BlackBerry OS v6+
 
 Works but without CSS3 trantions:
 
