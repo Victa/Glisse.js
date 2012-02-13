@@ -31,7 +31,7 @@ But now my goal is to make a fully compliant plugin, using javascript on old bro
 
 Put this script just after jquery in your document
 
-    <script src="glise.js"></script>
+    <script src="glisse.js"></script>
 
 Then include the base stylesheet (**Before you own stylesheets**)
 
