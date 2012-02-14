@@ -38,6 +38,7 @@ Put this script just after jquery in your document
     <script src="glisse.js"></script>
 
 Then include the base stylesheet (**Before you own stylesheets**)
+
 This stylesheet contains the base style for Glisse.js but there are not visual style included!!
 
     <link rel="stylesheet" href="glisse.css" />
