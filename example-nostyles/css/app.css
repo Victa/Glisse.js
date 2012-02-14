@@ -1,0 +1,43 @@
+.photos{cursor:pointer;}
+
+/* Glisse: Overlay */
+#glisse-overlay {
+  background: rgba(0,0,0.3);}
+
+#glisse-close {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  position: fixed;
+  top:40px;
+  right:40px;
+  background:red;}
+
+
+
+/* Prev/Next button */
+.glisse-next a, .glisse-prev a {
+  width: 40px;
+  height: 40px;
+  display: block;
+  position: fixed;
+  bottom: 10px;
+  background:green}
+
+.glisse-next a {
+  left: 50%;
+  margin-left: 20px; }
+
+.glisse-prev a {
+  left: 50%;
+  margin-left: -40px; }
+
+/* Legend */
+.glisse-legend {
+  position:fixed;
+  display:block;
+  bottom:10px;
+  left:10px;
+  color:white;
+  background:blue; }
+

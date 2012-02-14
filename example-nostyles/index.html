@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <head>
+        <meta charset="UTF-8" /> 
+        <title>Glise.js - Base</title>      
+        <link rel="stylesheet" href="../glisse.css" />
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+    <body>
+        <ul>
+            <li><img src="http://placekitten.com/240/140?1" class="myphotos" rel="group1" data-glisse-big="http://placekitten.com/1024/768?1" title="Aenean commodo ligula eget dolor" /></li>
+            <li><img src="http://placekitten.com/240/140?2" class="myphotos" rel="group1" data-glisse-big="http://placekitten.com/1024/768?2" title="Consectetuer adipiscing elit" /></li>
+            <li><img src="http://placekitten.com/240/140?3" class="myphotos" rel="group1" data-glisse-big="http://placekitten.com/1024/768?3" title="Aenean massa" /></li>
+            <li><img src="http://placekitten.com/240/140?4" class="myphotos" rel="group1" data-glisse-big="http://placekitten.com/1024/768?4" title="Lorem ipsum dolor sit amet" /></li>
+            <li><img src="http://placekitten.com/240/140?5" class="myphotos" rel="group1" data-glisse-big="http://placekitten.com/1024/768?5" title="Dis parturient montes" /></li>
+        </ul>
+
+        <!-- JS -->
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script src="../glisse.min.js"></script>
+        <script>
+            $(function () {
+                $('.myphotos').glisse({speed: 500, changeSpeed: 550, effect:'roll'}); 
+            });
+        </script>
+    </body>
+</html>
