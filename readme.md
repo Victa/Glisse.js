@@ -39,6 +39,8 @@ Put this script just after jquery in your document
 
 Then include the base stylesheet (**Before you own stylesheets**)
 
+This stylesheet contains the base style for Glisse.js but there are not visual style included!!
+
     <link rel="stylesheet" href="glisse.css" />
 
 Add a "data-glisse-big" attribute to your image. This attribute corresponds to your full view picture.
