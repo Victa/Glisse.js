@@ -28,6 +28,7 @@ This plugin uses a lot of new CSS3 features like keyframes. It’s definitely no
 
 * Fallbacks for old browsers
 * Add a paging
+* Add an autoplay feature
 
 ## Documentation
 
