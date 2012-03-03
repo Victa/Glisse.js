@@ -19,6 +19,7 @@ Feel free to fork the project on github or ping me on [twitter](http://twitter.c
 * Animated with CSS3 keyframes
 * 7 different transition effects
 * Scale to the viewport
+* Fullscreen support
 * iPad & iPhone ready _(soon a fully Android support)_
 
 #### Warning
