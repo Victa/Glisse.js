@@ -141,18 +141,17 @@
             plugin.els['close'].on('click', function() { closeLightbox(); });
 
             if(plugin.settings.fullscreen){
-                readyElement.observe('glisse-wrapper', function(){
-                    var docElm = document.documentElement;
-                    if (docElm.requestFullscreen) {
-                        docElm.requestFullscreen();
-                    }
-                    else if (docElm.mozRequestFullScreen) {
-                        docElm.mozRequestFullScreen();
-                    }
-                    else if (docElm.webkitRequestFullScreen) {
-                        docElm.webkitRequestFullScreen();
-                    }
-                });
+                var docElm = document.documentElement;
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                }
+                else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                    console.log("ok");
+                }
+                else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                }
             }
             
         };
