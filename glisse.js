@@ -23,7 +23,8 @@
             changeSpeed: 1000,
             effect: 'bounce',
             mobile: false,
-            fullscreen: false
+            fullscreen: false,
+            disablindRightClick: false
         };
 
         // Private var
@@ -57,6 +58,11 @@
                     if(event.keyCode.toString() === '37'){ changePicture('prev'); }
                 });
 
+                if(plugin.settings.disablindRightClick){
+                    plugin.els['content'].on('contextmenu', function(e){
+                        return false;
+                    });
+                }
                 // ==== Mobile support =================
                 if(plugin.settings.mobile){
                     mobile = {

@@ -81,6 +81,7 @@ Valid options for glisse.js are:
 * ``speed`` - Open/Close slideshow duration (default ``300``)
 * ``dataName`` - change the data attribute name for fulscreen pictures (default ``data-glisse-big``)
 * ``fullscren`` - fullscreen gallery using fullscreen api (default ``false``)
+* ``disablindRightClick`` - disabling right click on full size picture (default ``false``)
 * ``effect`` - Effect (default ``bounce``)
     * __Valid effect values:__
     * bounce
