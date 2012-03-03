@@ -1,5 +1,6 @@
 /*
 * jQuery Glisse plugin
+* v1.1
 * ---
 * @author: Victor
 * @authorurl: http://victorcoulon.fr
@@ -21,7 +22,8 @@
             speed: 300,
             changeSpeed: 1000,
             effect: 'bounce',
-            mobile: false
+            mobile: false,
+            fullscreen: false
         };
 
         // Private var
@@ -96,6 +98,7 @@
                 cssVal = 'opacity '+plugin.settings.speed+'ms ease, '+getPrefix('transform')+'transform '+plugin.settings.speed+'ms ease';
 
             // Create Glisse HTML structure
+            plugin.els['wrapper']       = $(document.createElement('div')).attr('id','glisse-wrapper');
             plugin.els['overlay']       = $(document.createElement('div')).attr('id','glisse-overlay').css(cssProp, cssVal);
             plugin.els['spinner']       = $(document.createElement('div')).attr('id','glisse-spinner');
             plugin.els['close']         = $(document.createElement('span')).attr('id','glisse-close').css(cssProp, cssVal);
@@ -114,11 +117,13 @@
                     plugin.els['controlNext'],
                     plugin.els['controlLegend'],
                     plugin.els['controlPrev']);
-            $('body').append(
+            plugin.els['wrapper'].append(
                     plugin.els['overlay'],
                     plugin.els['close'],
                     plugin.els['content'],
-                    plugin.els['controls']);
+                    plugin.els['controls']
+                );
+            $('body').append(plugin.els['wrapper']);
 
             readyElement.observe('glisse-overlay', function(){ plugin.els['overlay'].css('opacity',1); });
             readyElement.observe('glisse-close', function(){ plugin.els['close'].css('opacity',1); });
@@ -134,9 +139,26 @@
             plugin.els['overlay'].on('click', function() { closeLightbox(); });
             plugin.els['content'].on('click', function() { closeLightbox(); });
             plugin.els['close'].on('click', function() { closeLightbox(); });
+
+            if(plugin.settings.fullscreen){
+                readyElement.observe('glisse-wrapper', function(){
+                    var docElm = document.documentElement;
+                    if (docElm.requestFullscreen) {
+                        docElm.requestFullscreen();
+                    }
+                    else if (docElm.mozRequestFullScreen) {
+                        docElm.mozRequestFullScreen();
+                    }
+                    else if (docElm.webkitRequestFullScreen) {
+                        docElm.webkitRequestFullScreen();
+                    }
+                });
+            }
+            
         };
 
         var closeLightbox = function closeLightbox() {
+
             // Hide lightbox
             plugin.els['content'].css({opacity: 0}).css(getPrefix('transform')+'transform', 'scale(1.2)');
             plugin.els['overlay'].css({opacity: 0});
@@ -149,6 +171,7 @@
                 plugin.els['overlay'].remove();
                 plugin.els['close'].remove();
                 plugin.els['controls'].remove();
+                plugin.els['wrapper'].remove();
                 $('#glisse-transition-css').remove();
             }, plugin.settings.speed);
 
@@ -160,6 +183,18 @@
             document.ontouchstart = function(e){ return true; };
             document.ontouchend = function(e){ return true; };
             $(document).unbind("keydown");
+
+            if(plugin.settings.fullscreen){
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                }
+                else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }
         };
 
         var addImage = function addImage(pic) {

@@ -1,3 +1,5 @@
+html{height:100%}
+
 /* Glisse: Hide elements by default */
 #glisse-overlay, #glisse-close, #glisse-controls,#glisse-spinner{opacity:0;}
 

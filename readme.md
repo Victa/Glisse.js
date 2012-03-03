@@ -66,7 +66,8 @@ After it, call the plugin.
             $('.pics').glisse({
                 changeSpeed: 550, 
                 speed: 500,
-                effect:'bounce'
+                effect:'bounce',
+                fullscreen: true
             }); 
         });
     </script>
@@ -78,6 +79,7 @@ Valid options for glisse.js are:
 * ``changeSpeed`` - Transition duration betwwen 2 pictures (default ``1000``)
 * ``speed`` - Open/Close slideshow duration (default ``300``)
 * ``dataName`` - change the data attribute name for fulscreen pictures (default ``data-glisse-big``)
+* ``fullscren`` - fullscreen gallery using fullscreen api (default ``false``)
 * ``effect`` - Effect (default ``bounce``)
     * __Valid effect values:__
     * bounce
