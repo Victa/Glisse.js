@@ -7,6 +7,8 @@ To see the plugin in action here is two examples with some lovely photos of my f
 
 Feel free to fork the project on github or ping me on [twitter](http://twitter.com/_victa) for any comments.
 
+<a href='http://www.pledgie.com/campaigns/17334'><img alt='Click here to lend your support to: Glisse.js and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/17334.png?skin_name=chrome' border='0' /></a>
+
 #### Demonstrations
 
 * [Example #1](http://glisse.victorcoulon.fr/example-1)
