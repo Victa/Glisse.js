@@ -1,6 +1,6 @@
 /*
 * jQuery Glisse plugin
-* v1.1
+* v1.1.1
 * ---
 * @author: Victor
 * @authorurl: http://victorcoulon.fr
@@ -85,6 +85,7 @@
 
         var preloadImgs = function preloadImgs(){
             var current, image_urls = [], i, self = this;
+
             $('img[rel="'+group+'"]').each(function(i,el){
                 image_urls.push($(this).attr(plugin.settings.dataName));
             });
@@ -217,7 +218,7 @@
         };
 
         var changePicture = function changePicture(direction) {
-            var $currentEl = $('img[data-glisse-big="'+pictureUrl+'"]'),
+            var $currentEl = $('img[data-glisse-big="'+pictureUrl+'"][rel='+group+']'),
                 currentId  = $('img[rel='+group+']').index($currentEl),
                 totGroup   = $('img[rel='+group+']').length,
                 change     = true;
