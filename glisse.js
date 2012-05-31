@@ -24,7 +24,8 @@
             effect: 'bounce',
             mobile: false,
             fullscreen: false,
-            disablindRightClick: false
+            disablindRightClick: false,
+            parent: null, // jQuery selector to find the container
         };
 
         // Private var
@@ -491,13 +492,16 @@
         // === Contols actions  =================
 
         var setChangeStatus = function setChangeStatus() {
-            var $currentEl = $('img[data-glisse-big="'+pictureUrl+'"]');
-            if(!$currentEl.parent().next().find('img[rel='+group+']').length) {
+            var $currentEl = $('img[data-glisse-big="'+pictureUrl+'"]'),
+                parent = plugin.settings.parent?
+                    $currentEl.closest(plugin.settings.parent):
+                    $currentEl.parent();
+            if(!parent.next().find('img[rel='+group+']').length) {
                 plugin.els['controls'].find('.glisse-next').addClass('ended');
             } else {
                 plugin.els['controls'].find('.glisse-next').removeClass('ended');
             }
-            if(!$currentEl.parent().prev().find('img[rel='+group+']').length) {
+            if(!parent.prev().find('img[rel='+group+']').length) {
                 plugin.els['controls'].find('.glisse-prev').addClass('ended');
             } else {
                 plugin.els['controls'].find('.glisse-prev').removeClass('ended');
