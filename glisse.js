@@ -9,29 +9,32 @@
 * Based on jQuery Plugin Boilerplate 1.3
 *
 */
-(function($) {
-    $.glisse = function(element, options) {
+(function ($) {
+    $.glisse = function (element, options) {
 
-        var plugin = this;
+        var plugin = this,
+            $element = $(element),
+            defaults = {
+                dataName: 'data-glisse-big',
+                speed: 300,
+                changeSpeed: 1000,
+                effect: 'bounce',
+                mobile: false,
+                fullscreen: false,
+                disablindRightClick: false,
+                parent: null // jQuery selector to find the container
+            },
+            // Private var
+            pictureUrl,
+            group,
+            isChange = false,
+            touch = {},
+            cache = [];
+
         plugin.settings = {};
         plugin.els = {};
-        var $element = $(element);
 
-        var defaults = {
-            dataName: 'data-glisse-big',
-            speed: 300,
-            changeSpeed: 1000,
-            effect: 'bounce',
-            mobile: false,
-            fullscreen: false,
-            disablindRightClick: false,
-            parent: null, // jQuery selector to find the container
-        };
-
-        // Private var
-        var pictureUrl, group, isChange = false, touch = {}, cache = [];
-
-        plugin.init = function() {
+        plugin.init = function () {
             plugin.settings = $.extend({}, defaults, options);
 
             // Mobile ?
@@ -39,12 +42,13 @@
             $.Tablet = ((navigator.userAgent.match(/iPad/i)));
 
             // Set vars
-            pictureUrl = $($element).attr(plugin.settings.dataName);
             group = $element.attr('rel') || null;
             plugin.settings.mobile  = ($.Tablet || $.MobileDevice) ? true : false;
 
             // Set events
-            $element.on('click', function() {
+            $element.on('click', function () {
+                pictureUrl = $element.attr(plugin.settings.dataName);
+
                 createElements();
                 setChangeStyle();
                 addImage(pictureUrl);
@@ -77,7 +81,7 @@
                     document.ontouchstart = function(e){ touchHandler(e); };
                     document.ontouchend = function(e){ touchHandler(e); };
 
-                    if(!isSupportFixed()){
+                    if (!isSupportFixed()) {
                         //window.scrollTo(0,0);
                     }
                 }
@@ -182,7 +186,6 @@
                 $('#glisse-transition-css').remove();
             }, plugin.settings.speed);
 
-            pictureUrl = $($element).attr(plugin.settings.dataName);
             $element.removeClass('active');
 
             // Unbinds
