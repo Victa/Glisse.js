@@ -208,7 +208,7 @@
             spinner(true);
             var url = pic,
                 img = $('<img/>',{src: url}).appendTo(plugin.els['content']);
-            plugin.els['content'].css({ backgroundImage: 'url('+url+')'});
+            plugin.els['content'].css({ backgroundImage: 'url("'+url+'")'});
             
             img.load(function() {
                 img.remove();
@@ -263,7 +263,7 @@
 
                     var url = pictureUrl,
                         img = $('<img/>',{src: url}).appendTo(plugin.els['content']);
-                    plugin.els['content'].css({ backgroundImage: 'url('+url+')'});
+                    plugin.els['content'].css({ backgroundImage: 'url("'+url+'")'});
                     
                     img.load(function() {
                         img.remove();
