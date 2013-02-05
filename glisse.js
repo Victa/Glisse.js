@@ -249,7 +249,7 @@
                 
                 pictureUrl = $next.attr(plugin.settings.dataName);
 
-                if(cache.indexOf(pictureUrl) === -1)
+                if($.inArray(pictureUrl, cache) === -1)
                     spinner(true);
 
                 $currentEl.removeClass('active');
@@ -271,7 +271,7 @@
                     img.load(function() {
                         img.remove();
                         
-                        if(cache.indexOf(pictureUrl) === -1)
+                        if($.inArray(pictureUrl, cache) === -1)
                             spinner(false);
 
                         if(plugin.settings.mobile){
@@ -557,7 +557,7 @@
 
         var isValidEffect = function isValidEffect(effect){
             var fx = ['bounce','fadeBig','fade','roll','rotate','flipX','flipY'];
-            if(typeof(effect)=='string' && isNaN(effect) && fx.indexOf(effect) !== -1)
+            if(typeof(effect)=='string' && isNaN(effect) && $.inArray(effect, fx) !== -1)
                 return true;
         };
 
