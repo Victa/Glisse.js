@@ -79,10 +79,10 @@ After it, call the plugin.
 
 Valid options for glisse.js are:
 
-* ``changeSpeed`` - Transition duration betwwen 2 pictures (default ``1000``)
+* ``changeSpeed`` - Transition duration between 2 pictures (default ``1000``)
 * ``speed`` - Open/Close slideshow duration (default ``300``)
-* ``dataName`` - change the data attribute name for fulscreen pictures (default ``data-glisse-big``)
-* ``fullscren`` - fullscreen gallery using fullscreen api (default ``false``)
+* ``dataName`` - change the data attribute name for fullscreen pictures (default ``data-glisse-big``)
+* ``fullscreen`` - fullscreen gallery using fullscreen api (default ``false``)
 * ``disablindRightClick`` - disabling right click on full size picture (default ``false``)
 * ``effect`` - Effect (default ``bounce``)
     * __Valid effect values:__
@@ -104,7 +104,7 @@ Valid options for glisse.js are:
 * iPhone/iPad iOS 4.3+
 * BlackBerry OS v6+
 
-Works but without CSS3 trantions:
+Works but without CSS3 transitions:
 
 * Opera 10+
 * Firefox 3.6
