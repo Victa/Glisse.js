@@ -222,7 +222,7 @@
         };
 
         var changePicture = function changePicture(direction) {
-            var $currentEl = $('img[data-glisse-big="'+pictureUrl+'"][rel='+group+']'),
+            var $currentEl = $('img['+plugin.settings.dataName+'="'+pictureUrl+'"][rel='+group+']'),
                 currentId  = $('img[rel='+group+']').index($currentEl),
                 totGroup   = $('img[rel='+group+']').length,
                 change     = true;
@@ -495,7 +495,7 @@
         // === Contols actions  =================
 
         var setChangeStatus = function setChangeStatus() {
-            var $currentEl = $('img[data-glisse-big="'+pictureUrl+'"]'),
+            var $currentEl = $('img['+plugin.settings.dataName+'="'+pictureUrl+'"]'),
                 parent = plugin.settings.parent?
                     $currentEl.closest(plugin.settings.parent):
                     $currentEl.parent();
@@ -513,7 +513,7 @@
 
         var setTitle = function setTitle() {
             var $legend     = plugin.els['controls'].find('.glisse-legend');
-            var $currentEl = $('img[data-glisse-big="'+pictureUrl+'"]');
+            var $currentEl = $('img['+plugin.settings.dataName+'="'+pictureUrl+'"]');
             var title      = $currentEl.attr('title');
              $legend.html( (title) ? title : '');
         };
