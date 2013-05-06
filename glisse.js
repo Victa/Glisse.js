@@ -29,7 +29,10 @@
             group,
             isChange = false,
             touch = {},
-            cache = [];
+            cache = [],
+            getFullUrl = function ($el) {
+                return $el.attr(plugin.settings.dataName) || $el.attr('src');
+            };
 
         plugin.settings = {};
         plugin.els = {};
@@ -47,7 +50,7 @@
 
             // Set events
             $element.on('click', function () {
-                pictureUrl = $element.attr(plugin.settings.dataName);
+                pictureUrl = getFullUrl($element);
 
                 createElements();
                 setChangeStyle();
@@ -92,7 +95,7 @@
             var current, image_urls = [], i, self = this;
 
             $('img[rel="'+group+'"]').each(function(i,el){
-                image_urls.push($(this).attr(plugin.settings.dataName));
+                image_urls.push(getFullUrl($(this)));
             });
             function loaded(current){
                 cache.push(current);
@@ -247,7 +250,7 @@
                     plugin.els['content'].css(cssProp, '');
                 }
                 
-                pictureUrl = $next.attr(plugin.settings.dataName);
+                pictureUrl = getFullUrl($next);
 
                 if($.inArray(pictureUrl, cache) === -1)
                     spinner(true);
