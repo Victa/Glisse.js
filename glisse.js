@@ -9,7 +9,7 @@
 * Based on jQuery Plugin Boilerplate 1.3
 *
 */
-(function ($) {
+(function ($, document) {
     $.glisse = function (element, options) {
 
         var plugin = this,
@@ -28,6 +28,7 @@
             pictureUrl,
             group,
             isChange = false,
+            mobile = {},
             touch = {},
             cache = [],
             getFullUrl = function ($el) {
@@ -40,13 +41,9 @@
         plugin.init = function () {
             plugin.settings = $.extend({}, defaults, options);
 
-            // Mobile ?
-            $.MobileDevice = ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/Android/i)));
-            $.Tablet = ((navigator.userAgent.match(/iPad/i)));
-
             // Set vars
             group = $element.attr('rel') || null;
-            plugin.settings.mobile  = ($.Tablet || $.MobileDevice) ? true : false;
+            plugin.settings.mobile = !!navigator.userAgent.match(/iPhone|iPod|iPad|Android/i);
 
             // Set events
             $element.on('click', function () {
@@ -80,19 +77,13 @@
                         scrollX: null
                     };
 
-                    document.ontouchmove = function(e){ touchHandler(e); };
-                    document.ontouchstart = function(e){ touchHandler(e); };
-                    document.ontouchend = function(e){ touchHandler(e); };
-
-                    if (!isSupportFixed()) {
-                        //window.scrollTo(0,0);
-                    }
+                    document.ontouchmove = document.ontouchstart = document.ontouchend = touchHandler;
                 }
             });
         };
 
         var preloadImgs = function preloadImgs(){
-            var current, image_urls = [], i, self = this;
+            var current, image_urls = [], i;
 
             $('img[rel="'+group+'"]').each(function(i,el){
                 image_urls.push(getFullUrl($(this)));
@@ -105,7 +96,7 @@
                 current.load(loaded(image_urls[i]));
             }
         };
-        
+
         var createElements = function createElements() {
             $element.addClass('active');
 
@@ -162,13 +153,11 @@
                 }
                 else if (docElm.mozRequestFullScreen) {
                     docElm.mozRequestFullScreen();
-                    console.log("ok");
                 }
                 else if (docElm.webkitRequestFullScreen) {
                     docElm.webkitRequestFullScreen();
                 }
             }
-            
         };
 
         var closeLightbox = function closeLightbox() {
@@ -178,7 +167,7 @@
             plugin.els['overlay'].css({opacity: 0});
             plugin.els['close'].css({opacity: 0});
             plugin.els['controls'].css({opacity: 0});
-            
+
             // remove lightbox from dom
             setTimeout(function(){
                 plugin.els['content'].remove();
@@ -212,10 +201,9 @@
 
         var addImage = function addImage(pic) {
             spinner(true);
-            var url = pic,
-                img = $('<img/>',{src: url}).appendTo(plugin.els['content']);
-            plugin.els['content'].css({ backgroundImage: 'url("'+url+'")'});
-            
+            var img = $('<img/>',{src: pic}).appendTo(plugin.els['content']);
+            plugin.els['content'].css({ backgroundImage: 'url("'+pic+'")'});
+
             img.load(function() {
                 img.remove();
                 spinner(false);
@@ -233,7 +221,7 @@
             if((currentId === 0 && direction === 'prev') || (currentId === (totGroup-1) && direction === 'next')) {
                 change = false;
             }
-                
+
             if(change && isChange === false){
                 isChange = true;
                 var $next = (direction === 'next') ? $('img[rel='+group+']').eq(currentId+1) : $('img[rel='+group+']').eq(currentId-1);
@@ -249,7 +237,7 @@
                         cssVal = 'opacity '+plugin.settings.speed+'ms ease, '+getPrefix('transform')+'transform '+plugin.settings.speed+'ms ease';
                     plugin.els['content'].css(cssProp, '');
                 }
-                
+
                 pictureUrl = getFullUrl($next);
 
                 if($.inArray(pictureUrl, cache) === -1)
@@ -257,7 +245,7 @@
 
                 $currentEl.removeClass('active');
                 $next.addClass('active');
-                
+
                 setChangeStatus();
                 setTitle();
 
@@ -267,9 +255,8 @@
                             .css('display','none');
                     }
 
-                    var url = pictureUrl,
-                        img = $('<img/>',{src: url}).appendTo(plugin.els['content']);
-                    plugin.els['content'].css({ backgroundImage: 'url("'+url+'")'});
+                    var img = $('<img/>',{src: pictureUrl}).appendTo(plugin.els['content']);
+                    plugin.els['content'].css({ backgroundImage: 'url("'+pictureUrl+'")'});
                     
                     img.load(function() {
                         img.remove();
@@ -297,7 +284,6 @@
                     plugin.els['content'].removeClass('shake');
                 }, 600);
             }
-            
         };
 
         var setChangeStyle = function setChangeStyle(){
@@ -495,7 +481,7 @@
             }
         };
 
-        // === Contols actions  =================
+        // === Controls actions  =================
 
         var setChangeStatus = function setChangeStatus() {
             var $currentEl = $('img['+plugin.settings.dataName+'="'+pictureUrl+'"]'),
@@ -523,11 +509,7 @@
 
         // Spinner =========================================
         var spinner = function spinner(action) {
-            if(action){
-                plugin.els['overlay'].addClass('loading');
-            } else {
-                plugin.els['overlay'].removeClass('loading');
-            }
+            plugin.els['overlay'].toggleClass('loading', action);
         };
 
 
@@ -559,9 +541,7 @@
         })();
 
         var isValidEffect = function isValidEffect(effect){
-            var fx = ['bounce','fadeBig','fade','roll','rotate','flipX','flipY'];
-            if(typeof(effect)=='string' && isNaN(effect) && $.inArray(effect, fx) !== -1)
-                return true;
+            return !!~$.inArray(effect, ['bounce', 'fadeBig', 'fade', 'roll', 'rotate', 'flipX', 'flipY']);
         };
 
        // Swipe support
@@ -594,7 +574,7 @@
                     var touch = e.touches[0];
                     // The current X-coord of the users finger
                     mobile.nX = touch.pageX;
-                    
+
                     // If the user moved the finger from the right to the left
                     if (mobile.oX > mobile.nX) {
                         // Find the scrolling distance
@@ -649,4 +629,4 @@
             }
         });
     };
-})(jQuery);
+})(jQuery, window.document);
