@@ -95,7 +95,7 @@ Valid options for glisse.js are:
     * flipY
 
                        
-##Compatibility
+## Compatibility
 
 * Firefox 4+
 * Opera 11.6+
